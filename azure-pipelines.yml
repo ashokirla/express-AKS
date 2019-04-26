@@ -42,31 +42,35 @@ stages:
         tags: |
           $(tag)
 
-- stage: Test
-  displayName: Test
+- stage: test
   dependsOn: Build
-  jobs:  
-  - deployment: Deploy&Test
-    displayName: Deploy and Test
-    pool: 'Hosted Ubuntu 1604'
-    strategy:
+  jobs:
+  - deployment: DeployWeb
+    displayName: deploy&test
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'smarthotel-test.bookings'   # creates an environment if it doesn’t exist
+    strategy: 
       runOnce:
-        deploy:
+        deploy:                     # records deployments against ‘smarthotel-dev’
           steps:
+          - script: echo deploy to test
           - script: echo run tests
 
-- stage: ScurityTests
-  displayName: SecurityTests
+- stage: SecurityTests
   dependsOn: Build
-  jobs:  
-  - deployment: securityTests
-    displayName: run Security Tests
-    pool: 'Hosted Ubuntu 1604'
-    strategy:
+  jobs:
+  - deployment: DeployWeb
+    displayName: runSecurityTests
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    environment: 'smarthotel-test.bookings'   # creates an environment if it doesn’t exist
+    strategy: 
       runOnce:
-        deploy:
+        deploy:                     # records deployments against ‘smarthotel-dev’
           steps:
-          - script: echo run security tests
+          - script: echo deploy to test
+          - script: echo run tests
 
 - stage: Deploy
   displayName: Deploy stage
@@ -77,7 +81,7 @@ stages:
   - deployment: Deploy
     displayName: Deploy
     pool: 'Hosted Ubuntu 1604'
-    environment: 'smarthotel-dev.default'
+    environment: 'smarthotel-prod.bookings'
     strategy:
       runOnce:
         deploy:
