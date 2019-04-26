@@ -30,7 +30,7 @@ stages:
   jobs:  
   - job: Build
     displayName: Build
-    pool: default
+    pool: $(poolName)
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
@@ -48,7 +48,7 @@ stages:
   jobs:
   - deployment: Deploy
     displayName: Deploy
-    pool: default
+    pool: $(poolName)
     environment: 'smarthotel-dev.default'
     strategy:
       runOnce:
