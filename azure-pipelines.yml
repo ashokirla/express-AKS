@@ -49,7 +49,7 @@ stages:
     displayName: deploy&test
     pool:
       vmImage: 'Ubuntu-16.04'
-    environment: 'smarthotel-test.bookings'   # creates an environment if it doesn’t exist
+    environment: 'smarthotel-dev.default'   # creates an environment if it doesn’t exist
     strategy: 
       runOnce:
         deploy:                     # records deployments against ‘smarthotel-dev’
