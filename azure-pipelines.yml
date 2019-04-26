@@ -41,10 +41,18 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    
+    - task: CopyFiles@2
+      displayName: 'Copy Files to artifact staging directory'
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: '**/manifests/*.*'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
+
     - task: PublishPipelineArtifact@0
       inputs:
         artifactName: 'drop'
-        targetPath: '**/manifests/*'
+        targetPath: 'manifests/*'
 
 - stage: test
   dependsOn: Build
