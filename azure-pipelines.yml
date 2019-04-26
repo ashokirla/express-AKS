@@ -52,7 +52,7 @@ stages:
     - task: PublishPipelineArtifact@0
       inputs:
         artifactName: 'drop'
-        targetPath: '$(Build.ArtifactStagingDirectory)/**/manifests/*.*'
+        targetPath: '$(Build.ArtifactStagingDirectory)'
 
 - stage: test
   dependsOn: Build
@@ -116,7 +116,7 @@ stages:
               action: deploy
               namespace: $(k8sNamespace)
               manifests: |
-                $(System.ArtifactsDirectory)/**/manifests/*
+                $(System.ArtifactsDirectory)/manifests/*
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
