@@ -42,9 +42,37 @@ stages:
         tags: |
           $(tag)
 
+- stage: Test
+  displayName: Test
+  dependsOn: Build
+  jobs:  
+  - deployment: Deploy&Test
+    displayName: Deploy and Test
+    pool: 'Hosted Ubuntu 1604'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo run tests
+
+- stage: ScurityTests
+  displayName: SecurityTests
+  dependsOn: Build
+  jobs:  
+  - deployment: securityTests
+    displayName: run Security Tests
+    pool: 'Hosted Ubuntu 1604'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: echo run security tests
+
 - stage: Deploy
   displayName: Deploy stage
-  dependsOn: Build
+  dependsOn: 
+  - Test
+  - SecurityTests
   jobs:
   - deployment: Deploy
     displayName: Deploy
