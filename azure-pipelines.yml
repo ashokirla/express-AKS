@@ -52,7 +52,7 @@ stages:
     - task: PublishPipelineArtifact@0
       inputs:
         artifactName: 'drop'
-        targetPath: 'manifests/*'
+        targetPath: '$(Build.ArtifactStagingDirectory)/**/manifests/*.*'
 
 - stage: test
   dependsOn: Build
