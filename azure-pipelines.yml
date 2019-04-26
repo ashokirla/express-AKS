@@ -11,9 +11,9 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation - Docker Hub/ACR/...
-  dockerRegistryServiceConnection: 'c9863947-160b-42c9-87e2-06e3ac298225'
+  dockerRegistryServiceConnection: '98924591-f544-40c3-9daa-18fd6cfd0402'
   imageRepository: 'express-aks'
-  containerRegistryName: 'atulmakshelm.azurecr.io'
+  containerRegistryName: 'ronacr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
   
@@ -29,7 +29,7 @@ stages:
   displayName: Build stage
   jobs:  
   - job: Build
-    displayName: Build job
+    displayName: Build
     pool: default
     steps:
     - task: Docker@2
@@ -47,9 +47,9 @@ stages:
   dependsOn: Build
   jobs:
   - deployment: Deploy
-    displayName: Deploy job
+    displayName: Deploy
     pool: default
-    environment: 'RoopeshNairexpressAKS - 1832016084.default'
+    environment: 'smarthotel-dev.default'
     strategy:
       runOnce:
         deploy:
