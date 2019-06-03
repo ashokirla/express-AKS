@@ -16,6 +16,9 @@ variables:
   containerRegistry: 'ronacr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
+  varA: 'ubu'
+  varB: 'ntu'
+  varC: '-latest'
   
   # Kubernetes Namespace
   k8sNamespace: 'dev'
@@ -31,7 +34,7 @@ stages:
   - job: Build
     displayName: Build job
     pool:
-      vmImage: $(vmImageName)
+      vmImage: '$(varA)$(varB)$(varC)'
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
