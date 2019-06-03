@@ -11,7 +11,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '21d27030-0fb5-4450-888a-ac9ad6ac60ed'
+
   imageRepository: 'roopeshnairexpressaks'
   containerRegistry: 'ronacr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
@@ -32,6 +32,8 @@ stages:
   displayName: Build stage
   jobs:  
   - job: Build
+    variables:   
+      dockerRegistryServiceConnection: '21d27030-0fb5-4450-888a-ac9ad6ac60ed'
     displayName: Build job
     pool:
       vmImage: '$(varA)$(varB)$(varC)'
@@ -51,41 +53,5 @@ stages:
         artifactName: 'manifests'
         targetPath: 'manifests'
 
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-  jobs:
-  - deployment: Deploy
-    displayName: Deploy job
-    pool:
-      vmImage: $(vmImageName)
-    environment: 'RoopeshNairexpressAKS.dev'
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: DownloadPipelineArtifact@1
-            inputs:
-              artifactName: 'manifests'
-              downloadPath: '$(System.ArtifactsDirectory)/manifests'
 
-          - task: KubernetesManifest@0
-            displayName: Create imagePullSecret
-            inputs:
-              action: createSecret
-              secretName: $(imagePullSecret)
-              namespace: $(k8sNamespace)
-              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
-              
-          - task: KubernetesManifest@0
-            displayName: Deploy to Kubernetes cluster
-            inputs:
-              action: deploy
-              namespace: $(k8sNamespace)
-              manifests: |
-                $(System.ArtifactsDirectory)/manifests/deployment.yml
-                $(System.ArtifactsDirectory)/manifests/service.yml
-              imagePullSecrets: |
-                $(imagePullSecret)
-              containers: |
-                $(containerRegistry)/$(imageRepository):$(tag)
+ 
