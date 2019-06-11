@@ -16,6 +16,7 @@ variables:
   containerRegistry: 'ronacr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
+  Test: 'bar'
   
   # Kubernetes Namespace
   k8sNamespace: 'dev'
