@@ -33,7 +33,7 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - script: echo $Test
+    - script: echo "printing value of Test:" $Test
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
