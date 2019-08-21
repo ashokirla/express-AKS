@@ -51,7 +51,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'RoopeshNairexpressAKS-2661.colors'
+    environment: 'Test'
     strategy:
       runOnce:
         deploy:
