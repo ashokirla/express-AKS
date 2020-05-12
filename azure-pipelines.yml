@@ -12,7 +12,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: DockerHub
-  imageRepository: 'testmetadata'
+  imageRepository: 'akkirla/testmetadata'
   containerRegistry: 'ashkiracr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
