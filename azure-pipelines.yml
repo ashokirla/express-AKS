@@ -9,6 +9,7 @@ resources:
  pipelines:
    - pipeline: adsfadsf
      source: 'ashokirla.express-AKS'
+     trigger: true
 
 variables:
 
