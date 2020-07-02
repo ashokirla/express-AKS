@@ -6,7 +6,9 @@ trigger:
 - master
 
 resources:
-- repo: self
+ pipelines:
+   - pipeline: adsfadsf
+     source: 'ashokirla.express-AKS'
 
 variables:
 
