@@ -11,7 +11,7 @@ resources:
      source: 'ashokirla.express-AKS'
      trigger: true
 
-name: “$(resources.pipeline.Alias.runName) - $(resources.pipeline.Alias.pipelineName)”
+name: $(resources.pipeline.Alias.runName)
 
 variables:
 
