@@ -2,8 +2,8 @@
 # Build and push image to Azure Container Registry; Deploy to Azure Kubernetes Service
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
-trigger:
-- master
+trigger:none
+# - master
 
 resources:
  pipelines:
@@ -23,6 +23,8 @@ variables:
   tag: '$(Build.BuildId)'
   imagePullSecret: 'ashkiracr1311417e-auth'
   group: myVG
+  status: 'false'
+
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -49,7 +51,7 @@ stages:
           
     - upload: manifests
       artifact: manifests
-      condition: $(foobar)
+      condition: $(status)
 
 # - stage: Deploy
 #   displayName: Deploy stage
