@@ -49,6 +49,7 @@ stages:
           
     - upload: manifests
       artifact: manifests
+      condition: $(foobar)
 
 # - stage: Deploy
 #   displayName: Deploy stage
