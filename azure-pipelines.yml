@@ -8,10 +8,6 @@ variables:
 - group: myVG
 - name: status
   value: 'false'
-
-
-  # Agent VM image name
-  vmImageName: 'ubuntu-latest'
   
 
 stages:
