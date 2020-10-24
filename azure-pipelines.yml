@@ -5,16 +5,9 @@
 trigger: none
 
 variables:
-
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: DockerHub
-  imageRepository: 'akkirla/testmetadata'
-  containerRegistry: 'ashkiracr.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
-  tag: '$(Build.BuildId)'
-  imagePullSecret: 'ashkiracr1311417e-auth'
-  group: myVG
-  status: 'false'
+- group: myVG
+- name: status
+  value: 'false'
 
 
   # Agent VM image name
