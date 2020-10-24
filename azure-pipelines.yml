@@ -12,6 +12,7 @@ variables:
 stages:
 - stage: Build
   displayName: Build stage
+  condition: eq('true', variables['foo'])
   jobs:  
   - job: Build
     displayName: Build
