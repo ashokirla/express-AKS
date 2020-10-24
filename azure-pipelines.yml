@@ -6,6 +6,8 @@ trigger: none
 
 variables:
 - group: myVG
+- name: ABC
+  value: 'xyz'
 
 stages:
 - stage: Build
