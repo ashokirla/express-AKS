@@ -48,5 +48,5 @@ stages:
       inputs:
        targetType: 'inline'
        script: |
-        Write-Host "foobar: $(foobar) status: $(status)"
+        Write-Host "foo: $(foo) status: $(status)"
 
