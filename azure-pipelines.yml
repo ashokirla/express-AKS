@@ -33,6 +33,7 @@ stages:
     #   condition: $(status)
     
     - task: PowerShell@2
+      condition: $(foo)
       inputs:
        targetType: 'inline'
        script: |
