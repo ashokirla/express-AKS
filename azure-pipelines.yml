@@ -6,8 +6,6 @@ trigger: none
 
 variables:
 - group: myVG
-- name: status
-  value: 'Green'
 
 stages:
 - stage: Build
@@ -24,5 +22,5 @@ stages:
       inputs:
        targetType: 'inline'
        script: |
-        Write-Host "foo: $(foo) status: $(status)"
+        Write-Host "foo: $(foo)"
 
