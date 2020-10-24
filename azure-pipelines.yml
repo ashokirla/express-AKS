@@ -3,11 +3,6 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger: none
-resources:
- pipelines:
-   - pipeline: Alias
-     source: 'ashokirla.express-AKS'
-     trigger: true
 
 name: $(Build.BuildId)
 
